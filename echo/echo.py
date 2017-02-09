@@ -6,14 +6,15 @@ import time
 from slackclient import SlackClient
 
 # starterbot's ID as an environment variable
-BOT_ID = 'U43JNKTSA'
-
-# constants
-AT_BOT = "<@" + BOT_ID + ">"
-EXAMPLE_COMMAND = "do"
+BOT_ID = 'insert_bot_id'
 
 # instantiate Slack & Twilio clients
-slack_client = SlackClient('xoxb-139634673894-eB4yRxmec3D6wL9K57v1K0Uw')
+slack_client = SlackClient('insert_slack_group_token')
+
+# constants
+#AT_BOT = "<@" + BOT_ID + ">"
+#EXAMPLE_COMMAND = "do"
+
 
 def handle_command(command, channel):
     """
