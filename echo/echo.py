@@ -3,13 +3,18 @@
 
 import os
 import time
+import urllib
+import json
 from slackclient import SlackClient
 
-# starterbot's ID as an environment variable
-BOT_ID = 'insert_bot_id'
+# starterbot's ID
+BOT_ID = 'insert_BOT_ID'
 
 # instantiate Slack & Twilio clients
-slack_client = SlackClient('insert_slack_group_token')
+slack_client = SlackClient('insert_Slack_BOT_Token')
+
+# openweathermap api Token
+OWMapitoken = 'insert_weather_API_Token'
 
 # constants
 #AT_BOT = "<@" + BOT_ID + ">"
@@ -46,7 +51,18 @@ def parse_slack_output(slack_rtm_output):
             if output and 'text' in output and 'bot_id' not in output:
             #if output and 'text' in output and AT_BOT in output['text']:
                 # return text after the @ mention, whitespace removed
-				
+                cityname = output['text'].strip().lower()
+                link = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&appid=" + OWMapitoken
+                databuffer = urllib.urlopen(link)           
+                data = json.loads(databuffer.read())
+                if data["cod"] == 200:
+                    dataname = data["name"]
+                    for item in data["weather"]:
+                    	weather = item.get("main")
+                    temp = data["main"]['temp']
+                    temp = str(temp - 273.15)
+                    if cityname == dataname.lower():
+                	    return cityname + " is now " + temp + " Celsius and "+ weather, output['channel']
                 return output['text'].strip().lower(), output['channel']
                 #return output['text'].split(AT_BOT)[1].strip().lower(), \
                 #       output['channel']
