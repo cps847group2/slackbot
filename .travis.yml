@@ -5,9 +5,7 @@ python:
 cache: pip
 install:
   - pip install codecov
-  - pip install slackclient
-  - pip install unittest
-script:
+ script:
   - python -m unittest discover -v ./tests/
   - coverage run ./tests/test.py
 
