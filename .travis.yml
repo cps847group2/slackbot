@@ -8,7 +8,7 @@ install:
 
 script:
   - python -m unittest discover -v ./tests/
-  - coverage run ./tests/test.py
+  - coverage run ./tests/tests.py
 
 after_success:
   - codecov -token=a3c339f1-175a-4e84-ba89-968241469cc7
