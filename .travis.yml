@@ -1,0 +1,23 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+cache: pip
+install:
+  - pip install codecov
+  - pip install slackclient
+  - pip install unittest
+script:
+  - python -m unittest discover -v ./tests/
+  - coverage run ./tests/test.py
+
+after_success:
+  - codecov -token=a3c339f1-175a-4e84-ba89-968241469cc7
+
+#deploy:
+ # provider: s3
+ # access_key_id: #add s3 key
+ # secret_access_key: #add s3 secre key
+ # bucket:
+ # local-dir: 
+ # region:
