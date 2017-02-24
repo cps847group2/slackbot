@@ -14,7 +14,7 @@ class TestMyFunc(unittest.TestCase):
         self.assertEqual( my_functions.increment_by_one(0), 1)
 
     def test_random_int(self):
-        self.assertEqual( my_functions.add_five(3),8)
+        self.assertEqual( my_functions.add_five(2),7)
 
 if __name__ == '__main__':
     unittest.main()
